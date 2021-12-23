@@ -1,0 +1,27 @@
+name: Warning check
+
+on:
+  pull_request:
+    branches:
+      - main
+
+concurrency:
+  group: warning-check-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  warning-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: "adopt"
+          java-version: "11"
+
+      - name: Check warning baseline
+        run: ./gradlew checkKotlinWarningBaseline
