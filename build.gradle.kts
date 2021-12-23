@@ -3,7 +3,7 @@ plugins {
     `java-gradle-plugin`
     id("maven-publish")
     id("com.gradle.plugin-publish").version("0.16.0")
-    // id("com.doist.gradle.kotlin-warning-baseline").version("+")
+    id("com.doist.gradle.kotlin-warning-baseline").version("+")
 }
 
 repositories {
