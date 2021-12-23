@@ -10,7 +10,7 @@ repositories {
     mavenCentral()
 }
 group = "com.doist.gradle"
-version = "1.0.0"
+version = property("version") as String
 
 dependencies {
     compileOnly("org.jetbrains.kotlin:kotlin-gradle-plugin")
