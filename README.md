@@ -57,6 +57,10 @@ Also see plugin page in [Gradle Plugin Portal](https://plugins.gradle.org/plugin
 - `checkKotlinWarningBaseline` Check that all warnings are in warning baseline files for each source set in project/module.
 - `removeKotlinWarningBaseline` Remove all warning baselines files in project/module.
 
+## Release
+
+To release a new version, ensure `CHANGELOG.md` is up-to-date, and push the corresponding tag (e.g., `v1.2.3`). GitHub Actions handles the rest.
+
 ## Licence
 
 Released under the [MIT License](https://opensource.org/licenses/MIT).
