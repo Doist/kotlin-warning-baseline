@@ -48,6 +48,7 @@ class KotlinWarningBaselinePlugin : Plugin<Project> {
 
             warningFiles.set(kotlinTaskMap.values)
             baselineFiles.set(baselines.values)
+            this.pathConvertor.set(pathConvertor)
 
             dependsOn(kotlinTaskMap.keys + clean)
             mustRunAfter(clean)
