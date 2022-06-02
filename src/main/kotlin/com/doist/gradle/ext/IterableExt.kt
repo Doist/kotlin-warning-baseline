@@ -7,5 +7,5 @@ fun Iterable<File>.readSetOfLines(): Set<String> = flatMapTo(mutableSetOf()) {
 }
 
 fun Iterable<String>.filterByBaseline(baseline: File): List<String> = filter {
-    it.startsWith("${baseline.parentFile.name}${File.separatorChar}")
+    it.startsWith("${baseline.parentFile.name}/")
 }

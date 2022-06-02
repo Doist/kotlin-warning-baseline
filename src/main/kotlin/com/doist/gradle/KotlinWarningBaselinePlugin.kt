@@ -1,6 +1,7 @@
 package com.doist.gradle
 
 import com.doist.gradle.collector.WarningFileCollector
+import com.doist.gradle.convertor.PathSeparatorConvertor
 import com.doist.gradle.spec.TaskInGraphSpec
 import com.doist.gradle.task.CheckKotlinWarningBaselineTask
 import com.doist.gradle.task.RemoveKotlinWarningBaselineTask
@@ -29,12 +30,13 @@ class KotlinWarningBaselinePlugin : Plugin<Project> {
             val sourceSetRoot = it.findRootDirectory()
             sourceSetRoot to File(sourceSetRoot, extension.baselineFileName)
         }
+        val pathConvertor = PathSeparatorConvertor()
 
         val kotlinTaskMap = tasks.withType<AbstractKotlinCompile<*>>()
             .filter { task -> extension.skipSpecs.none { it.isSatisfiedBy(task) } }
             .associateWith { File(buildDir, "kotlin-warnings/${it.name}.txt") }
             .onEach { (task, file) ->
-                val collector = WarningFileCollector(task, file, baselines.keys)
+                val collector = WarningFileCollector(task, file, pathConvertor, baselines.keys)
                 gradle.taskGraph.addTaskExecutionListener(collector)
             }
 
@@ -46,6 +48,7 @@ class KotlinWarningBaselinePlugin : Plugin<Project> {
 
             warningFiles.set(kotlinTaskMap.values)
             baselineFiles.set(baselines.values)
+            this.pathConvertor.set(pathConvertor)
 
             dependsOn(kotlinTaskMap.keys + clean)
             mustRunAfter(clean)
