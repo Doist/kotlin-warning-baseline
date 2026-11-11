@@ -27,8 +27,8 @@ gradlePlugin {
 }
 
 pluginBundle {
-    website = "https://github.com/Doist/kotlin-warning-baseline"
-    vcsUrl = "https://github.com/Doist/kotlin-warning-baseline.git"
+    website = "https://github.com/todoist/kotlin-warning-baseline"
+    vcsUrl = "https://github.com/todoist/kotlin-warning-baseline.git"
 
     plugins.getByName(pluginName) {
         displayName = "Kotlin Warning Baseline Plugin"
